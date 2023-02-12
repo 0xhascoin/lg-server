@@ -28,11 +28,11 @@ const db = getFirestore(firebaseApp);
 async function getUser(db, address) {
     const docRef = doc(db, "users", address);
     const docSnap = await getDoc(docRef);
-    
+
     if (docSnap.exists()) {
         return docSnap.data();
     } else {
-        return {}
+        return null
     }
 }
 
@@ -50,7 +50,7 @@ app.use(cors());
 app.use(morgan('combined'));
 
 app.get("/", (req, res) => {
-    res.send({"name": "John"});
+    res.send({ "name": "John" });
 });
 
 // defining an endpoint to return all ads
@@ -60,8 +60,17 @@ app.get('/:address', async (req, res) => {
 
     try {
         const user = await getUser(db, address);
-        if(user.NFT) res.json(user.NFT);
-        res.json({error: "User not found in DB"});
+        if (user !== null) {
+            let resObj = {
+                attributes: user.attributes,
+                image: user.image,
+                name: user.name,
+                description: user.description
+            }
+            res.json(resObj);
+        } else {
+            res.json({ error: "User not found in DB" });
+        }
     } catch (error) {
         console.log("Error: ", error);
     }
