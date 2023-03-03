@@ -1,7 +1,7 @@
-import { client, getProfileDetailsByAddress } from "./lensApi.js";
-import { images, names, nftData } from './nftMetadata.js';
+const { client, getProfileDetailsByAddress } = require("./lensApi");
+const { images, names, nftData } = require('./nftMetadata');
 
-export const fetchLensProfile = async (address) => {
+const fetchLensProfile = async (address) => {
   try {
     const { data: { profiles: { items } } } = await client.query(getProfileDetailsByAddress, { "address": address }).toPromise();
     return {...items[0], error: false};
@@ -65,7 +65,7 @@ const buildObject = (profile) => {
   return obj;
 }
 
-export const returnNFTMetadataObject = (profile) => {
+const returnNFTMetadataObject = (profile) => {
   try {
     const nftMetadata = buildObject(profile);
     return nftMetadata
@@ -92,3 +92,4 @@ const calculateLevel = (experience) => {
   return { level, experienceToNextLevel };
 }
 
+module.exports = { fetchLensProfile, returnNFTMetadataObject }

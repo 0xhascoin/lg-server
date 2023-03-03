@@ -1,11 +1,11 @@
-import { createClient } from "urql";
+const { createClient } = require("urql");
 
 const API_URL = "https://api.lens.dev"
-export const client = createClient({
+const client = createClient({
     url: API_URL
 });
 
-export const getProfileDetailsByAddress = `
+const getProfileDetailsByAddress = `
 query Profiles (
     $address: EthereumAddress!
   ){
@@ -98,3 +98,5 @@ query Profiles (
     }
   }
 `
+
+module.exports = { client, getProfileDetailsByAddress }

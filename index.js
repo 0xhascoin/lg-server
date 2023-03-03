@@ -1,10 +1,10 @@
-import express from "express";
-import bodyParser from "body-parser";
-import cors from "cors";
-import helmet from "helmet";
-import morgan from "morgan";
+const express = require("express");
+const bodyParser = require("body-parser");
+const cors = require("cors");
+const helmet = require("helmet");
+const morgan = require("morgan");
 
-import { fetchLensProfile, returnNFTMetadataObject } from './controller.js'
+const { fetchLensProfile, returnNFTMetadataObject } = require("./controller")
 
 const app = express();
 const PORT = process.env.PORT || 3000;

@@ -2,7 +2,7 @@
 // 6-10 -> Image 2
 // 11-15 -> Image 3
 
-export const images = [
+const images = [
     "https://cdn.midjourney.com/a89f296d-cfd2-4991-b2a1-17cf4ee45fe5/grid_0.png",
     "https://cdn.midjourney.com/e8da90a1-f4e6-469b-897c-6ed7fb6dbc93/grid_0.png",
     "https://cdn.midjourney.com/1c2ee78c-0806-457e-9799-ff68cdcdad8b/grid_0.png",
@@ -15,7 +15,7 @@ export const images = [
 ]
 
 
-export const names = [
+const names = [
     "NFT #1: Seed",
     "NFT #2: Seedling",
     "NFT #3: Sprout",
@@ -27,7 +27,7 @@ export const names = [
     "NFT #9: Grandpa Oak"
 ]
 
-export const nftData = [
+const nftData = [
     {
         name: names[0],
         unlocksAtLevel: 1,
@@ -83,3 +83,5 @@ export const nftData = [
         imageUrl: images[8]
     },
 ]
+
+module.exports = { images, names, nftData }
